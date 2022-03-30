@@ -1,0 +1,25 @@
+// The solution clears the first row such that no 1 will be remaning in the first row. Then checks all other rows to see the values of each row be the same, i.e. in each row, all cells should be either 1 or 0.
+
+class Solution {
+    public boolean removeOnes(int[][] grid) {
+        
+        int m = grid.length;
+        int n = grid[0].length;
+        
+        for (int i = 0; i < n; i ++) {
+            if (grid[0][i] == 1)
+                flip(i, m, grid);
+        }
+        
+        for (int i = 1; i < m; i ++)
+            for (int j = 1; j < n; j ++)
+                if (grid[i][j] != grid[i][j - 1])
+                    return false;
+        return true;
+    }
+    private void flip(int col, int m, int [][] grid) {
+        
+        for (int i = 0; i < m; i ++)
+            grid[i][col] = 1 - grid[i][col];
+    }
+}

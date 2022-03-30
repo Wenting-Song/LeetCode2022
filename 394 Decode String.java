@@ -1,12 +1,11 @@
 class Solution {
     public String decodeString(String s) {
+        // s = "3[af]2[bc]"
+        //
         Stack<Character> stack = new Stack<>();
-        String cur = "";
-        String ans = "";
         for(int i = 0; i < s.length(); i++){
             char ch = s.charAt(i);
             if(ch == ']'){
-                // List<Character> decodedString = new ArrayList<>();
                 StringBuilder str = new StringBuilder();
                 while(stack.peek() != '['){
                     char cha =  stack.pop();
@@ -14,8 +13,9 @@ class Solution {
                        str.append(cha);
                     }
                 }
+                //str fa    cb
                 String sub = str.reverse().toString(); //this is the string contained in [] 
-                // decodedString.add(sub);
+                // sub af   bc
                 stack.pop();
                 int k = 0;
                 int base = 1;
@@ -29,7 +29,7 @@ class Solution {
                         stack.push(c);
                     k--;
                 }
-
+                //stack: (left is bottom) afafaf   bcbc
               
             }else{
                 stack.push(ch);
